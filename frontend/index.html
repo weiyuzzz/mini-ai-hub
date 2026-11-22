@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mini AI Hub">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152.png">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<title>Mini AI Hub</title>
+</head>
+<body>
+
+<!-- ======= 本地 SVG 图标库（线宽 1.7 / 24 viewBox / currentColor） ======= -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <symbol id="i-logo" viewBox="0 0 24 24">
+        <g><circle cx="12" cy="12" r="3.2"/><circle cx="5.5" cy="5.5" r="2"/><circle cx="18.5" cy="5.5" r="2"/><circle cx="12" cy="20.5" r="2"/><path d="M9.7 9.7 6.9 6.9M14.3 9.7l2.8-2.8M12 15.2v3.3"/></g>
+      </symbol>
+      <symbol id="i-overview" viewBox="0 0 24 24">
+        <g><rect x="3.2" y="3.2" width="7.6" height="7.6" rx="1.6"/><rect x="13.2" y="3.2" width="7.6" height="7.6" rx="1.6"/><rect x="3.2" y="13.2" width="7.6" height="7.6" rx="1.6"/><rect x="13.2" y="13.2" width="7.6" height="7.6" rx="1.6"/></g>
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <g><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="17" cy="10" r="1" fill="currentColor" stroke="none"/></g>
+      </symbol>
+      <symbol id="i-system" viewBox="0 0 24 24">
+        <g><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1.5v3M15 1.5v3M9 19.5v3M15 19.5v3M1.5 9h3M1.5 15h3M19.5 9h3M19.5 15h3"/></g>
+      </symbol>
+      <symbol id="i-network" viewBox="0 0 24 24">
+        <g><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></g>
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <g><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></g>
+      </symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24">
+        <g><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1.5v3M15 1.5v3M9 19.5v3M15 19.5v3M1.5 9h3M1.5 15h3M19.5 9h3M19.5 15h3"/></g>
+      </symbol>
+      <symbol id="i-mem" viewBox="0 0 24 24">
+        <g><path d="M18 20V10M12 20V4M6 20v-6"/></g>
+      </symbol>
+      <symbol id="i-gpu" viewBox="0 0 24 24">
+        <g><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8 21h8M12 16.5V21"/><rect x="6.5" y="7.5" width="6" height="5" rx="1"/><path d="M15.5 10h3"/></g>
+      </symbol>
+      <symbol id="i-disk" viewBox="0 0 24 24">
+        <g><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M2.5 12h19"/><circle cx="6.5" cy="16.2" r="1" fill="currentColor" stroke="none"/><circle cx="17.5" cy="16.2" r="1" fill="currentColor" stroke="none"/></g>
+      </symbol>
+      <symbol id="i-down" viewBox="0 0 24 24">
+        <g><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></g>
+      </symbol>
+      <symbol id="i-up" viewBox="0 0 24 24">
+        <g><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 8l5-5 5 5M12 3v12"/></g>
+      </symbol>
+      <symbol id="i-send" viewBox="0 0 24 24">
+        <g><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></g>
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <g><path d="M12 5v14M5 12h14"/></g>
+      </symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24">
+        <g><path d="M21.5 3.5v6h-6"/><path d="M20.36 14.5a8.5 8.5 0 1 1-2-8.78l3.14 3.78"/></g>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <g><circle cx="12" cy="12" r="9"/><path d="M8 12.2l2.7 2.7 5.3-5.9"/></g>
+      </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <g><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4.5"/><circle cx="12" cy="16.8" r="1" fill="currentColor" stroke="none"/></g>
+      </symbol>
+      <symbol id="i-info" viewBox="0 0 24 24">
+        <g><circle cx="12" cy="12" r="9"/><path d="M12 16v-4.5"/><circle cx="12" cy="8.3" r="1" fill="currentColor" stroke="none"/></g>
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <g><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></g>
+      </symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24">
+        <g><path d="M9 18l6-6-6-6"/></g>
+      </symbol>
+      <symbol id="i-key" viewBox="0 0 24 24">
+        <g><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></g>
+      </symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24">
+        <g><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13.8 13.8 0 0 1 3.5 9 13.8 13.8 0 0 1-3.5 9 13.8 13.8 0 0 1-3.5-9A13.8 13.8 0 0 1 12 3z"/></g>
+      </symbol>
+      <symbol id="i-server" viewBox="0 0 24 24">
+        <g><rect x="2.5" y="2.5" width="19" height="7.5" rx="2"/><rect x="2.5" y="14" width="19" height="7.5" rx="2"/><path d="M6.5 6.2h.01M6.5 17.7h.01"/></g>
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <g><path d="M18 6 6 18M6 6l12 12"/></g>
+      </symbol>
+      <symbol id="i-thermo" viewBox="0 0 24 24">
+        <g><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4 4 0 1 0 5 0z"/></g>
+      </symbol>
+      <symbol id="i-power" viewBox="0 0 24 24">
+        <g><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><path d="M12 2v9"/></g>
+      </symbol>
+      <symbol id="i-wifi" viewBox="0 0 24 24">
+        <g><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><path d="M12 20h.01"/></g>
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <g><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></g>
+      </symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24">
+        <g><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></g>
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <g><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></g>
+      </symbol>
+    </g>
+  </defs>
+</svg>
+
+<div id="app">
+
+  <!-- ======= 侧栏（横屏） ======= -->
+  <aside class="sidebar">
+    <div class="side-brand"><svg class="ic ic-22"><use href="#i-logo" xlink:href="#i-logo"></use></svg></div>
+    <nav class="side-nav">
+      <a class="nav-item is-active" data-page="overview" href="#overview"><svg class="ic ic-22"><use href="#i-overview" xlink:href="#i-overview"></use></svg><span>总览</span></a>
+      <a class="nav-item" data-page="ai" href="#ai"><svg class="ic ic-22"><use href="#i-chat" xlink:href="#i-chat"></use></svg><span>助手</span></a>
+      <a class="nav-item" data-page="system" href="#system"><svg class="ic ic-22"><use href="#i-system" xlink:href="#i-system"></use></svg><span>监控</span></a>
+      <a class="nav-item" data-page="network" href="#network"><svg class="ic ic-22"><use href="#i-network" xlink:href="#i-network"></use></svg><span>网络</span></a>
+      <a class="nav-item" data-page="settings" href="#settings"><svg class="ic ic-22"><use href="#i-settings" xlink:href="#i-settings"></use></svg><span>设置</span></a>
+    </nav>
+    <div class="side-foot">
+      <i class="dot dot-bad" id="linkDot"></i>
+      <span class="side-foot-label">HUB</span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <!-- ======= 顶栏 ======= -->
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1 id="pageTitle">总览</h1>
+        <span class="eyebrow" id="pageTag">OVERVIEW</span>
+      </div>
+      <div class="topbar-right">
+        <div class="clock">
+          <span class="clock-time" id="clockTime">--:--</span>
+          <span class="clock-date" id="clockDate">—</span>
+        </div>
+        <div class="topbar-chips">
+          <span class="chip" id="chipPc"><i class="chip-dot"></i><span>Windows</span></span>
+          <span class="chip" id="chipAi"><i class="chip-dot"></i><span>AI</span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======= 内容区 ======= -->
+    <main class="content" id="content">
+
+      <!-- ===== 页面一：总览 ===== -->
+      <section class="page is-active" id="page-overview">
+        <div class="banner hidden" id="ovBanner">
+          <svg class="ic ic-18"><use href="#i-alert" xlink:href="#i-alert"></use></svg>
+          <span class="banner-text" id="ovBannerText">与 Windows 主机失去连接</span>
+          <button class="banner-btn" id="ovRetry">重试</button>
+        </div>
+
+        <div class="eyebrow-row">
+          <span class="eyebrow">System Pulse</span>
+          <span class="eyebrow-note" id="ovHostNote">等待主机数据…</span>
+        </div>
+
+        <div class="ov-row ov-row-1">
+          <div class="card ov-card-cpu">
+            <div class="ring-wrap">
+              <svg class="ring" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-val" id="ovCpuRing" cx="60" cy="60" r="52" transform="rotate(-90 60 60)"></circle>
+              </svg>
+              <div class="ring-center"><span class="ring-num" id="ovCpuVal">--</span><span class="ring-unit">%</span></div>
+            </div>
+            <div class="ov-cpu-side">
+              <div class="card-kicker">CPU</div>
+              <svg class="spark" viewBox="0 0 120 32" preserveAspectRatio="none"><polyline class="spark-line" id="ovCpuSpark" points=""></polyline></svg>
+              <div class="sub" id="ovCpuSub">—</div>
+            </div>
+          </div>
+
+          <div class="card ov-card-mem">
+            <div class="card-kicker">内存 Memory</div>
+            <div class="num-row"><span class="num" id="ovMemVal">--</span><span class="num-unit">%</span></div>
+            <div class="meter"><i id="ovMemBar"></i></div>
+            <div class="sub" id="ovMemSub">— / —</div>
+          </div>
+
+          <div class="card ov-card-net">
+            <div class="net-pair">
+              <div class="net-item">
+                <svg class="ic ic-20 c-mint"><use href="#i-down" xlink:href="#i-down"></use></svg>
+                <div class="net-val"><span class="num" id="ovDown">--</span><span class="num-unit" id="ovDownUnit"></span></div>
+                <span class="net-tag">下载 ↓</span>
+              </div>
+              <div class="net-divider"></div>
+              <div class="net-item">
+                <svg class="ic ic-20 c-blue"><use href="#i-up" xlink:href="#i-up"></use></svg>
+                <div class="net-val"><span class="num" id="ovUp">--</span><span class="num-unit" id="ovUpUnit"></span></div>
+                <span class="net-tag">上传 ↑</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card ov-gpu" id="ovGpu">
+          <div class="gpu-row" id="ovGpuNa">
+            <div class="gpu-icon"><svg class="ic ic-20"><use href="#i-gpu" xlink:href="#i-gpu"></use></svg></div>
+            <div>
+              <div class="gpu-na-title">未检测到独立显卡</div>
+              <div class="gpu-na-sub">GPU 状态不可用（需要 NVIDIA 显卡与 nvidia-smi）</div>
+            </div>
+          </div>
+          <div class="gpu-row hidden" id="ovGpuOk">
+            <div class="gpu-icon"><svg class="ic ic-20"><use href="#i-gpu" xlink:href="#i-gpu"></use></svg></div>
+            <div class="gpu-main">
+              <div class="gpu-name" id="ovGpuName">—</div>
+              <div class="gpu-meter-line">
+                <span class="gpu-meter-label">负载</span>
+                <div class="meter"><i id="ovGpuBar"></i></div>
+                <span class="gpu-meter-val" id="ovGpuVal">--%</span>
+              </div>
+            </div>
+            <div class="gpu-stat" id="ovGpuStat">—</div>
+          </div>
+        </div>
+
+        <div class="card ov-quick">
+          <div class="ov-quick-head">
+            <svg class="ic ic-20 c-mint"><use href="#i-logo" xlink:href="#i-logo"></use></svg>
+            <div class="ov-quick-title">
+              <div class="card-kicker">AI 快捷指令</div>
+              <div class="sub" id="ovAiHint">未配置 AI 服务</div>
+            </div>
+          </div>
+          <div class="ov-quick-input">
+            <input class="field" type="text" id="ovQuickInput" placeholder="问点什么，例如：把这段话翻译成英文…" maxlength="2000">
+            <button class="btn-icon btn-send" id="ovQuickSend"><svg class="ic ic-20"><use href="#i-send" xlink:href="#i-send"></use></svg></button>
+          </div>
+          <div class="ov-quick-chips" id="ovQuickChips">
+            <button class="chip-btn" data-p="explain">解释知识</button>
+            <button class="chip-btn" data-p="translate">中英翻译</button>
+            <button class="chip-btn" data-p="polish">文本润色</button>
+          </div>
+        </div>
+
+        <div class="eyebrow-row ov-row-2-gap">
+          <span class="eyebrow">Network</span>
+          <span class="eyebrow-note" id="ovNetNote">—</span>
+        </div>
+
+        <div class="ov-row ov-row-2">
+          <div class="card ov-card-chart">
+            <div class="chart-head">
+              <div class="legend"><i class="lg lg-mint"></i>下载<i class="lg lg-blue"></i>上传</div>
+              <span class="sub" id="ovChartRange">近 5 分钟</span>
+            </div>
+            <svg class="chart" id="ovChart" viewBox="0 0 600 150" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="card ov-card-host">
+            <div class="host-head"><i class="dot dot-bad" id="ovHostDot"></i><span class="host-name" id="ovHostName">—</span></div>
+            <div id="ovHostRows"></div>
+            <div class="disk-mini" id="ovDiskMini"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 页面二：AI 助手 ===== -->
+      <section class="page" id="page-ai">
+        <div class="ai-head">
+          <div class="ai-model"><i class="dot" id="aiDot"></i><span id="aiModelName">未配置模型</span></div>
+          <button class="btn btn-ghost btn-sm" id="aiNewChat"><svg class="ic ic-14"><use href="#i-plus" xlink:href="#i-plus"></use></svg>新建对话</button>
+        </div>
+        <div class="ai-msgs" id="aiMsgs">
+          <div class="ai-empty" id="aiEmpty">
+            <svg class="ic ic-32 c-mint"><use href="#i-logo" xlink:href="#i-logo"></use></svg>
+            <div class="ai-empty-title">与 AI 对话</div>
+            <div class="sub" id="aiEmptyHint">在下方输入问题，或点按快捷指令开始</div>
+          </div>
+          <div id="aiMsgList"></div>
+        </div>
+        <div class="ai-quick" id="aiQuick">
+          <button class="chip-btn" data-p="explain">解释知识</button>
+          <button class="chip-btn" data-p="translate">中英翻译</button>
+          <button class="chip-btn" data-p="polish">文本润色</button>
+          <button class="chip-btn" data-p="code">代码分析</button>
+          <button class="chip-btn" data-p="summary">文档总结</button>
+        </div>
+        <div class="ai-inputbar">
+          <textarea id="aiInput" rows="1" placeholder="输入消息，点按发送…" maxlength="8000"></textarea>
+          <button class="btn-icon btn-send" id="aiSend"><svg class="ic ic-20"><use href="#i-send" xlink:href="#i-send"></use></svg></button>
+        </div>
+      </section>
+
+      <!-- ===== 页面三：电脑监控 ===== -->
+      <section class="page" id="page-system">
+        <div class="eyebrow-row">
+          <span class="eyebrow">Processor · Memory</span>
+          <span class="eyebrow-note" id="sysUptimeNote">—</span>
+        </div>
+        <div class="sys-row">
+          <div class="card sys-cpu">
+            <div class="ring-wrap">
+              <svg class="ring" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-val" id="sysCpuRing" cx="60" cy="60" r="52" transform="rotate(-90 60 60)"></circle>
+              </svg>
+              <div class="ring-center"><span class="ring-num" id="sysCpuVal">--</span><span class="ring-unit">%</span></div>
+            </div>
+            <div class="sys-cpu-side">
+              <div class="card-kicker">各核心占用</div>
+              <div class="cores" id="sysCores"></div>
+              <div class="sub" id="sysCpuBrand">—</div>
+            </div>
+          </div>
+          <div class="card sys-mem">
+            <div class="card-kicker">内存</div>
+            <div class="num-row"><span class="num" id="sysMemVal">--</span><span class="num-unit">%</span></div>
+            <div class="meter"><i id="sysMemBar"></i></div>
+            <div class="sub" id="sysMemSub">— / —</div>
+            <div class="mem-swap" id="sysSwap"></div>
+          </div>
+          <div class="card sys-gpu">
+            <div class="card-kicker">显卡 GPU</div>
+            <div class="gpu-row" id="sysGpuNa">
+              <div class="gpu-icon"><svg class="ic ic-20"><use href="#i-gpu" xlink:href="#i-gpu"></use></svg></div>
+              <div>
+                <div class="gpu-na-title">不可用</div>
+                <div class="gpu-na-sub">未检测到 NVIDIA 显卡</div>
+              </div>
+            </div>
+            <div class="gpu-row hidden" id="sysGpuOk">
+              <div class="gpu-icon"><svg class="ic ic-20"><use href="#i-gpu" xlink:href="#i-gpu"></use></svg></div>
+              <div class="gpu-main">
+                <div class="gpu-name" id="sysGpuName">—</div>
+                <div class="gpu-meter-line">
+                  <span class="gpu-meter-label">负载</span>
+                  <div class="meter"><i id="sysGpuBar"></i></div>
+                  <span class="gpu-meter-val" id="sysGpuVal">--%</span>
+                </div>
+                <div class="gpu-meter-line">
+                  <span class="gpu-meter-label">显存</span>
+                  <div class="meter"><i id="sysVramBar" class="m-blue"></i></div>
+                  <span class="gpu-meter-val" id="sysVramVal">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eyebrow-row">
+          <span class="eyebrow">Storage · Processes</span>
+          <span class="eyebrow-note" id="sysDiskNote">—</span>
+        </div>
+        <div class="sys-row sys-row-2">
+          <div class="card sys-disks">
+            <div class="card-kicker">磁盘</div>
+            <div id="sysDiskList"></div>
+          </div>
+          <div class="card sys-procs">
+            <div class="card-kicker">高占用进程</div>
+            <table class="proc-table" id="sysProcTable">
+              <thead><tr><th>进程</th><th class="r">CPU</th><th class="r">内存</th></tr></thead>
+              <tbody id="sysProcBody"><tr><td colspan="3" class="proc-empty">采样中…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card sys-history">
+          <div class="chart-head">
+            <div class="legend"><i class="lg lg-mint"></i>CPU<i class="lg lg-blue"></i>内存</div>
+            <span class="sub" id="sysHistNote">近 6 分钟</span>
+          </div>
+          <svg class="chart" id="sysChart" viewBox="0 0 600 150" preserveAspectRatio="none"></svg>
+        </div>
+
+        <div class="sys-temps" id="sysTemps"></div>
+      </section>
+
+      <!-- ===== 页面四：网络监控 ===== -->
+      <section class="page" id="page-network">
+        <div class="eyebrow-row">
+          <span class="eyebrow">Connection</span>
+          <span class="eyebrow-note" id="netNote">—</span>
+        </div>
+        <div class="net-row">
+          <div class="card net-adapter">
+            <div class="adapter-grid">
+              <div class="adapter-cell full">
+                <div class="adapter-k">默认网卡</div>
+                <div class="adapter-v big" id="netNic">—</div>
+              </div>
+              <div class="adapter-cell">
+                <div class="adapter-k">本机 IP</div>
+                <div class="adapter-v" id="netIp">—</div>
+              </div>
+              <div class="adapter-cell">
+                <div class="adapter-k">默认网关</div>
+                <div class="adapter-v" id="netGw">—</div>
+              </div>
+              <div class="adapter-cell">
+                <div class="adapter-k">MAC 地址</div>
+                <div class="adapter-v" id="netMac">—</div>
+              </div>
+              <div class="adapter-cell">
+                <div class="adapter-k">链路速率 / 状态</div>
+                <div class="adapter-v" id="netLink">—</div>
+              </div>
+            </div>
+          </div>
+          <div class="card net-latency">
+            <div class="card-kicker">网关延迟</div>
+            <div class="num-row"><span class="num" id="netLatVal">--</span><span class="num-unit">ms</span></div>
+            <div class="sub" id="netLatSub">等待采样</div>
+            <div class="net-internet" id="netInternet">
+              <svg class="ic ic-16"><use href="#i-globe" xlink:href="#i-globe"></use></svg>
+              <span id="netInternetText">互联网连通性检测中…</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card net-chart-card">
+          <div class="chart-head">
+            <div class="legend"><i class="lg lg-mint"></i>下载<i class="lg lg-blue"></i>上传</div>
+            <span class="sub" id="netChartNote">实时流量 · 近 6 分钟</span>
+          </div>
+          <svg class="chart chart-tall" id="netChart" viewBox="0 0 600 170" preserveAspectRatio="none"></svg>
+          <div class="net-totals">
+            <div class="net-total"><span class="sub">本次开机累计接收</span><div class="net-total-v" id="netRecvTotal">—</div></div>
+            <div class="net-total"><span class="sub">本次开机累计发送</span><div class="net-total-v" id="netSentTotal">—</div></div>
+          </div>
+        </div>
+
+        <div class="card net-adapters-card">
+          <div class="card-kicker">网络适配器</div>
+          <div id="netAdapterList"></div>
+        </div>
+
+        <div class="net-future sub">规划中：局域网设备发现 · 网络拓扑可视化 · 网络故障诊断</div>
+      </section>
+
+      <!-- ===== 页面五：设置 ===== -->
+      <section class="page" id="page-settings">
+        <div class="eyebrow-row">
+          <span class="eyebrow">AI Service</span>
+          <span class="eyebrow-note">OpenAI-compatible 接口</span>
+        </div>
+        <div class="card form-card">
+          <div class="form-row">
+            <label>服务地址 Base URL</label>
+            <input class="field" type="text" id="setBase" placeholder="https://api.deepseek.com/v1" autocapitalize="off" autocorrect="off">
+            <div class="form-hint">兼容 OpenAI / DeepSeek / Kimi / LM Studio / Ollama 等，通常以 /v1 结尾</div>
+          </div>
+          <div class="form-row">
+            <label>模型名称</label>
+            <input class="field" type="text" id="setModel" placeholder="deepseek-chat" autocapitalize="off" autocorrect="off">
+          </div>
+          <div class="form-row">
+            <label>API Key</label>
+            <input class="field" type="password" id="setKey" placeholder="留空表示保持不变" autocapitalize="off" autocorrect="off">
+            <div class="form-hint" id="setKeyHint">未设置</div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" id="setSave">保存配置</button>
+            <button class="btn btn-ghost" id="setTest"><svg class="ic ic-16"><use href="#i-zap" xlink:href="#i-zap"></use></svg>测试连接</button>
+          </div>
+          <div class="form-status" id="setTestStatus"></div>
+        </div>
+
+        <div class="eyebrow-row">
+          <span class="eyebrow">General</span>
+        </div>
+        <div class="card form-card">
+          <div class="form-row-inline">
+            <div><label>数据刷新频率</label><div class="form-hint">监控数据从 Windows 主机轮询获取</div></div>
+            <div class="seg" id="setRefresh">
+              <button data-v="3000">3s</button>
+              <button data-v="5000">5s</button>
+              <button data-v="10000">10s</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="eyebrow-row">
+          <span class="eyebrow">Server</span>
+        </div>
+        <div class="card form-card" id="setServer">
+          <div class="server-row"><span>服务状态</span><b id="setSrvState">检测中…</b></div>
+          <div class="server-row"><span>版本</span><b id="setSrvVersion">—</b></div>
+          <div class="server-row"><span>服务端口</span><b id="setSrvPort">—</b></div>
+          <div class="server-row"><span>已运行</span><b id="setSrvUptime">—</b></div>
+          <div class="server-row server-row-last"><span>iPad 访问地址</span><b id="setSrvLan">—</b></div>
+        </div>
+
+        <div class="settings-foot sub">Mini AI Hub · 仅限可信任局域网使用 · 请勿暴露到公网</div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ======= 底部导航（竖屏） ======= -->
+  <nav class="tabbar">
+    <a class="nav-item is-active" data-page="overview" href="#overview"><svg class="ic ic-22"><use href="#i-overview" xlink:href="#i-overview"></use></svg><span>总览</span></a>
+    <a class="nav-item" data-page="ai" href="#ai"><svg class="ic ic-22"><use href="#i-chat" xlink:href="#i-chat"></use></svg><span>助手</span></a>
+    <a class="nav-item" data-page="system" href="#system"><svg class="ic ic-22"><use href="#i-system" xlink:href="#i-system"></use></svg><span>监控</span></a>
+    <a class="nav-item" data-page="network" href="#network"><svg class="ic ic-22"><use href="#i-network" xlink:href="#i-network"></use></svg><span>网络</span></a>
+    <a class="nav-item" data-page="settings" href="#settings"><svg class="ic ic-22"><use href="#i-settings" xlink:href="#i-settings"></use></svg><span>设置</span></a>
+  </nav>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

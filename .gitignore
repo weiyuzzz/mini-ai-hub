@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# 含 API Key 的本地配置，绝不提交
+data/config.json
+
+.DS_Store
+Thumbs.db

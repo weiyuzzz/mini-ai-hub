@@ -1,0 +1,240 @@
+/* ============================================================
+   Mini AI Hub — layout.css  应用骨架与响应式
+   ============================================================ */
+
+#app {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-flex;
+  display: flex;
+  background: #101820;
+}
+
+.main {
+  -webkit-flex: 1;
+  flex: 1;
+  min-width: 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+/* ---------- 侧栏（横屏） ---------- */
+.sidebar {
+  width: 72px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  background: #162129;
+  border-right: 1px solid #30414A;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 14px 0 16px;
+}
+
+.side-brand {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #1D2A32;
+  border: 1px solid #30414A;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #9DE6C8;
+  margin-bottom: 16px;
+}
+
+.side-nav {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.nav-item {
+  width: 58px;
+  padding: 9px 0 7px;
+  border-radius: 12px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  color: #97AAA7;
+  position: relative;
+  margin-bottom: 6px;
+  text-decoration: none;
+}
+.nav-item span { font-size: 10px; margin-top: 4px; letter-spacing: 0.02em; }
+.nav-item .ic { opacity: 0.75; }
+.nav-item:active { background: rgba(38,54,64,.5); }
+.nav-item.is-active { color: #EDF4F1; background: rgba(38,54,64,.65); }
+.nav-item.is-active .ic { color: #9DE6C8; opacity: 1; }
+.nav-item.is-active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  border-radius: 1px;
+  background: #9DE6C8;
+}
+
+.side-foot {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  align-items: center;
+  margin-top: 8px;
+}
+.side-foot-label { font-size: 9px; letter-spacing: 0.18em; color: #97AAA7; margin-top: 7px; }
+
+/* ---------- 顶栏 ---------- */
+.topbar {
+  height: 60px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #30414A;
+  background: #162129;
+}
+.topbar-title h1 { font-size: 17px; font-weight: 600; letter-spacing: 0.01em; line-height: 1.2; }
+.topbar-title .eyebrow { display: block; margin-top: 1px; }
+
+.topbar-right {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.clock {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  margin-right: 14px;
+}
+.clock-time { font-size: 17px; font-weight: 300; letter-spacing: 0.05em; line-height: 1.15; }
+.clock-date { font-size: 10px; color: #97AAA7; }
+
+.topbar-chips { display: -webkit-flex; display: flex; }
+
+/* ---------- 内容区 ---------- */
+.content {
+  -webkit-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 20px 20px;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  display: none;
+}
+.page.is-active {
+  display: block;
+  -webkit-animation: pageIn .18s ease-out;
+  animation: pageIn .18s ease-out;
+}
+/* AI 页为全高纵向 flex（头部 / 消息滚动区 / 输入区） */
+#page-ai.is-active {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+}
+
+@-webkit-keyframes pageIn {
+  from { opacity: 0; -webkit-transform: translateY(6px); }
+  to { opacity: 1; -webkit-transform: translateY(0); }
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 底部导航（竖屏显示） ---------- */
+.tabbar { display: none; }
+
+/* ---------- standalone（iPad 主屏幕模式）：给状态栏让出 20px ---------- */
+html.standalone .topbar { height: 80px; padding-top: 20px; }
+
+/* ============================================================
+   响应式
+   ============================================================ */
+
+/* 竖屏 iPad：底部导航 + 单列 */
+@media (orientation: portrait) {
+  #app {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+  .sidebar { display: none; }
+  .topbar { height: 58px; padding: 0 16px; }
+  html.standalone .topbar { height: 78px; }
+  .clock { display: none; }
+
+  .tabbar {
+    -webkit-order: 2;
+    order: 2;
+    display: -webkit-flex;
+    display: flex;
+    height: 56px;
+    background: #162129;
+    border-top: 1px solid #30414A;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+  }
+  .tabbar .nav-item {
+    -webkit-flex: 1;
+    flex: 1;
+    width: auto;
+    margin: 0 0 0 0;
+    border-radius: 0;
+    padding: 8px 0 6px;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+  .tabbar .nav-item.is-active { background: transparent; }
+  .tabbar .nav-item.is-active::before { display: none; }
+  .tabbar .nav-item.is-active span { color: #9DE6C8; }
+
+  .content { padding: 16px 16px 24px; }
+}
+
+/* 桌面调试视口：内容再宽一点，留白放大 */
+@media (min-width: 1200px) {
+  .content { padding: 26px 32px 44px; }
+  .page { max-width: 1080px; }
+}

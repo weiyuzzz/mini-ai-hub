@@ -1,0 +1,391 @@
+/* ============================================================
+   Mini AI Hub — components.css  通用组件
+   ============================================================ */
+
+/* ---------- 状态胶囊 ---------- */
+.chip {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  background: #162129;
+  border: 1px solid #30414A;
+  border-radius: 16px;
+  font-size: 12px;
+  color: #97AAA7;
+  white-space: nowrap;
+}
+.chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #97AAA7;
+  margin-right: 7px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+.chip.is-ok .chip-dot { background: #9DE6C8; -webkit-box-shadow: 0 0 0 3px rgba(157,230,200,.14); box-shadow: 0 0 0 3px rgba(157,230,200,.14); }
+.chip.is-warn .chip-dot { background: #E9B66B; -webkit-box-shadow: 0 0 0 3px rgba(233,182,107,.14); box-shadow: 0 0 0 3px rgba(233,182,107,.14); }
+.chip.is-bad .chip-dot { background: #EF8B83; -webkit-box-shadow: 0 0 0 3px rgba(239,139,131,.14); box-shadow: 0 0 0 3px rgba(239,139,131,.14); }
+.chip.is-ok { color: #EDF4F1; }
+.chip b { color: #EDF4F1; font-weight: 500; margin-left: 3px; }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  -webkit-transition: opacity .15s;
+  transition: opacity .15s;
+}
+.btn:active { opacity: .72; }
+.btn-primary { background: #9DE6C8; color: #101820; }
+.btn-ghost {
+  border: 1px solid #30414A;
+  color: #EDF4F1;
+  background: rgba(38,54,64,.35);
+}
+.btn-ghost .ic { margin-right: 6px; }
+.btn-sm { min-height: 36px; padding: 0 14px; font-size: 12px; }
+
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border-radius: 10px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  -webkit-transition: opacity .15s;
+  transition: opacity .15s;
+}
+.btn-icon:active { opacity: .72; }
+.btn-send { background: #9DE6C8; color: #101820; }
+.btn-send.is-disabled { opacity: .35; }
+
+/* ---------- 输入框 ---------- */
+.field {
+  width: 100%;
+  background: #162129;
+  border: 1px solid #30414A;
+  border-radius: 10px;
+  color: #EDF4F1;
+  font-size: 14px;
+  padding: 11px 12px;
+  outline: none;
+  line-height: 1.4;
+}
+.field:focus {
+  border-color: rgba(157,230,200,.55);
+  -webkit-box-shadow: 0 0 0 2px rgba(157,230,200,.14);
+  box-shadow: 0 0 0 2px rgba(157,230,200,.14);
+}
+.field::placeholder, textarea::placeholder { color: #5F7377; }
+
+/* ---------- 快捷指令胶囊按钮 ---------- */
+.chip-btn {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #30414A;
+  background: rgba(38,54,64,.4);
+  font-size: 12px;
+  color: #97AAA7;
+  margin: 0 8px 8px 0;
+  -webkit-transition: opacity .15s, color .15s;
+  transition: opacity .15s, color .15s;
+}
+.chip-btn:active { opacity: .7; color: #EDF4F1; }
+
+/* ---------- 分段控件 ---------- */
+.seg {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  background: #101820;
+  border: 1px solid #30414A;
+  border-radius: 10px;
+  padding: 2px;
+}
+.seg button {
+  min-width: 52px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #97AAA7;
+  padding: 0 10px;
+}
+.seg button.is-on { background: #263640; color: #EDF4F1; font-weight: 600; }
+
+/* ---------- 环形仪表 ---------- */
+.ring-wrap { position: relative; width: 120px; height: 120px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+.ring { width: 120px; height: 120px; display: block; }
+.ring-track { fill: none; stroke: #30414A; stroke-width: 6; }
+.ring-val {
+  fill: none;
+  stroke: #9DE6C8;
+  stroke-width: 6;
+  stroke-linecap: round;
+  -webkit-transition: stroke-dasharray .3s;
+  transition: stroke-dasharray .3s;
+}
+.ring-val.c-blue { stroke: #8ABDF0; }
+.ring-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.ring-num { font-size: 29px; font-weight: 300; letter-spacing: 0; }
+.ring-unit { font-size: 12px; color: #97AAA7; margin-left: 3px; margin-top: 10px; }
+
+/* ---------- 迷你趋势线 ---------- */
+.spark { width: 100%; height: 32px; display: block; margin: 10px 0 6px; }
+.spark-line { fill: none; stroke: #9DE6C8; stroke-width: 1.5; opacity: .9; }
+
+/* ---------- 主图表 ---------- */
+.chart { width: 100%; height: 136px; display: block; }
+.chart-tall { height: 170px; }
+.chart-grid { stroke: rgba(48,65,74,.55); stroke-width: 1; }
+.chart-line { fill: none; stroke: #9DE6C8; stroke-width: 1.6; }
+.chart-line.is-blue { stroke: #8ABDF0; }
+.chart-area { fill: rgba(157,230,200,.10); stroke: none; }
+.chart-area.is-blue { fill: rgba(138,189,240,.08); }
+
+.chart-head {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.legend {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 12px;
+  color: #97AAA7;
+}
+.lg {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: #9DE6C8;
+  margin-right: 6px;
+}
+.lg-blue { background: #8ABDF0; }
+.legend .lg + * { margin-right: 16px; }
+.legend .lg-blue { margin-left: 14px; }
+
+/* ---------- GPU 条目（总览长条 / 监控卡片共用） ---------- */
+.gpu-row { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; min-height: 40px; width: 100%; }
+.gpu-loading { -webkit-justify-content: center; justify-content: center; color: #97AAA7; font-size: 12px; }
+.gpu-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #101820;
+  border: 1px solid #30414A;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #8ABDF0;
+  margin-right: 14px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+.gpu-main { -webkit-flex: 1; flex: 1; min-width: 0; }
+.gpu-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gpu-meter-line { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; margin-top: 9px; }
+.gpu-meter-label { font-size: 10px; color: #97AAA7; width: 34px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+.gpu-meter-line .meter { -webkit-flex: 1; flex: 1; margin: 0; }
+.gpu-meter-val { font-size: 12px; color: #EDF4F1; width: 52px; text-align: right; -webkit-flex-shrink: 0; flex-shrink: 0; }
+.gpu-stat { font-size: 12px; color: #97AAA7; margin-left: 18px; text-align: right; -webkit-flex-shrink: 0; flex-shrink: 0; line-height: 1.5; }
+.gpu-na { color: #97AAA7; font-size: 13px; }
+.gpu-na-title { font-size: 13px; color: #97AAA7; }
+.gpu-na-sub { font-size: 11px; color: #5F7377; margin-top: 2px; }
+
+/* ---------- AI 对话 ---------- */
+.ai-head {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #30414A;
+}
+.ai-model { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; font-size: 13px; color: #97AAA7; }
+.ai-model .dot { margin-right: 8px; }
+.ai-model span { max-width: 420px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.ai-msgs {
+  -webkit-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 2px 8px;
+  min-height: 0;
+}
+.ai-empty {
+  text-align: center;
+  padding-top: 12%;
+}
+.ai-empty .ic-32 { margin: 0 auto 12px; opacity: .9; }
+.ai-empty-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+
+.msg { margin-bottom: 18px; }
+.msg-user { display: -webkit-flex; display: flex; -webkit-justify-content: flex-end; justify-content: flex-end; }
+.msg-body {
+  font-size: 14px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.msg-user .msg-body {
+  max-width: 78%;
+  background: rgba(157,230,200,.10);
+  border: 1px solid rgba(157,230,200,.22);
+  border-radius: 14px;
+  padding: 10px 14px;
+  color: #EDF4F1;
+  white-space: pre-wrap;
+}
+.msg-ai { display: -webkit-flex; display: flex; }
+.msg-ai .msg-body {
+  max-width: 94%;
+  border-left: 2px solid #9DE6C8;
+  padding: 2px 0 2px 12px;
+}
+.msg-ai .msg-meta { font-size: 10px; color: #5F7377; margin-top: 7px; padding-left: 12px; }
+.msg-err .msg-body { border-left-color: #EF8B83; color: #EF8B83; }
+
+.msg-body p + p { margin-top: 8px; }
+.msg-body pre {
+  background: #101820;
+  border: 1px solid #30414A;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: 11px/1.5 Menlo, Consolas, "Courier New", monospace;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 8px 0;
+  white-space: pre;
+}
+.msg-body code {
+  font: 12px Menlo, Consolas, "Courier New", monospace;
+  background: #101820;
+  border: 1px solid rgba(48,65,74,.6);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: #8ABDF0;
+}
+.msg-body pre code { background: none; border: none; padding: 0; color: #EDF4F1; font-size: 11px; }
+
+.typing { display: -webkit-inline-flex; display: inline-flex; -webkit-align-items: center; align-items: center; padding: 6px 0 2px; }
+.typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #97AAA7;
+  margin-right: 5px;
+  -webkit-animation: blink 1s infinite;
+  animation: blink 1s infinite;
+}
+.typing i:nth-child(2) { -webkit-animation-delay: .16s; animation-delay: .16s; }
+.typing i:nth-child(3) { -webkit-animation-delay: .32s; animation-delay: .32s; margin-right: 0; }
+@-webkit-keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+.ai-quick {
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  padding: 8px 0 4px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.ai-quick .chip-btn { margin-bottom: 4px; }
+
+.ai-inputbar {
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  padding-top: 8px;
+}
+.ai-inputbar textarea {
+  -webkit-flex: 1;
+  flex: 1;
+  background: #162129;
+  border: 1px solid #30414A;
+  border-radius: 12px;
+  color: #EDF4F1;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 14px;
+  outline: none;
+  resize: none;
+  overflow-y: hidden;
+  min-height: 46px;
+  max-height: 96px;
+  margin-right: 10px;
+}
+.ai-inputbar textarea:focus {
+  border-color: rgba(157,230,200,.55);
+  -webkit-box-shadow: 0 0 0 2px rgba(157,230,200,.14);
+  box-shadow: 0 0 0 2px rgba(157,230,200,.14);
+}
+.ai-inputbar .btn-icon { width: 46px; height: 46px; border-radius: 12px; }
+
+/* ---------- 表格（进程） ---------- */
+.proc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.proc-table th {
+  text-align: left;
+  color: #97AAA7;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 4px 7px;
+  border-bottom: 1px solid #30414A;
+}
+.proc-table td { padding: 7px 4px; border-bottom: 1px solid rgba(48,65,74,.4); color: #97AAA7; }
+.proc-table tr:last-child td { border-bottom: none; }
+.proc-table td.r { text-align: right; color: #EDF4F1; }
+.proc-table td.proc-name { color: #EDF4F1; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.proc-empty { text-align: center; color: #5F7377; padding: 14px 0 !important; }

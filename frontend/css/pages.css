@@ -1,0 +1,352 @@
+/* ============================================================
+   Mini AI Hub — pages.css  各页面模块布局
+   ============================================================ */
+
+/* ---------- 横向模块行（margin 代替 flex gap，iOS 9 兼容） ---------- */
+.ov-row, .sys-row, .net-row { display: -webkit-flex; display: flex; min-width: 0; }
+.ov-row > * + *, .sys-row > * + *, .net-row > * + * { margin-left: 14px; }
+.row-gap { margin-top: 14px; }
+
+/* ============================================================
+   页面一：总览 Overview
+   ============================================================ */
+.ov-row-1 { -webkit-align-items: stretch; align-items: stretch; }
+
+.ov-card-cpu {
+  -webkit-flex: 5;
+  flex: 5;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  min-height: 138px;
+}
+.ov-cpu-side { -webkit-flex: 1; flex: 1; min-width: 0; margin-left: 16px; }
+
+.ov-card-mem {
+  -webkit-flex: 3;
+  flex: 3;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.ov-card-mem .num { font-size: 26px; }
+
+.ov-card-net {
+  -webkit-flex: 4;
+  flex: 4;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+.net-pair {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 100%;
+}
+.net-item {
+  -webkit-flex: 1;
+  flex: 1;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+}
+.net-item .ic { margin-bottom: 8px; }
+.net-val .num { font-size: 24px; }
+.net-val .num-unit { font-size: 11px; }
+.net-tag { font-size: 11px; color: #97AAA7; margin-top: 3px; }
+.net-divider { width: 1px; background: #30414A; margin: 4px 16px; -webkit-align-self: stretch; align-self: stretch; }
+
+.ov-gpu { margin-top: 14px; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; }
+
+.ov-quick { margin-top: 14px; }
+.ov-quick-head { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; }
+.ov-quick-head .ic { margin-right: 12px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+.ov-quick-title .card-kicker { margin-bottom: 2px; }
+.ov-quick-input { display: -webkit-flex; display: flex; margin-top: 12px; }
+.ov-quick-input .field { -webkit-flex: 1; flex: 1; min-width: 0; height: 44px; margin-right: 10px; }
+.ov-quick-chips { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin-top: 4px; }
+
+.ov-row-2-gap { margin-top: 18px; }
+.ov-card-chart { -webkit-flex: 7; flex: 7; }
+.ov-card-host { -webkit-flex: 5; flex: 5; }
+
+.host-head { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; margin-bottom: 8px; }
+.host-name { font-size: 15px; font-weight: 600; margin-left: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.host-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 7px 0;
+  border-top: 1px solid rgba(48,65,74,.55);
+  color: #97AAA7;
+}
+.host-row b { color: #EDF4F1; font-weight: 500; text-align: right; margin-left: 12px; white-space: nowrap; }
+.disk-mini { margin-top: 6px; border-top: 1px solid rgba(48,65,74,.55); padding-top: 10px; }
+.disk-mini-head { display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; font-size: 11px; color: #97AAA7; margin-bottom: 7px; }
+.disk-mini-head b { color: #EDF4F1; font-weight: 500; }
+.disk-mini .meter { margin: 0; }
+
+/* ============================================================
+   页面二：AI 助手（布局在 components.css）
+   ============================================================ */
+
+/* ============================================================
+   页面三：电脑监控 System
+   ============================================================ */
+.sys-row { -webkit-align-items: stretch; align-items: stretch; }
+
+.sys-cpu {
+  -webkit-flex: 5;
+  flex: 5;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.sys-cpu-side { -webkit-flex: 1; flex: 1; min-width: 0; margin-left: 14px; }
+.sys-cpu-side .sub { font-size: 11px; line-height: 1.45; display: block; }
+.cores { margin-bottom: 8px; }
+.core {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 33.33%;
+  padding-right: 10px;
+  margin-bottom: 7px;
+  float: left;
+}
+.core-label { font-size: 9px; color: #97AAA7; width: 20px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+.core-bar { -webkit-flex: 1; flex: 1; height: 4px; background: #101820; border-radius: 2px; overflow: hidden; }
+.core-bar i { display: block; height: 100%; width: 0%; background: #9DE6C8; border-radius: 2px; }
+.core-bar i.lv-warn { background: #E9B66B; }
+.core-bar i.lv-bad { background: #EF8B83; }
+
+.sys-mem {
+  -webkit-flex: 3;
+  flex: 3;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.sys-mem .num { font-size: 26px; }
+.mem-swap { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(48,65,74,.55); font-size: 11px; color: #97AAA7; }
+
+.sys-gpu {
+  -webkit-flex: 4;
+  flex: 4;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.sys-gpu .gpu-row { -webkit-align-items: center; align-items: center; }
+.gpu-meter-line .meter { margin: 0; }
+.sys-temps .chip b { color: #EDF4F1; font-weight: 500; }
+
+.sys-row-2 { -webkit-align-items: stretch; align-items: stretch; }
+.sys-disks { -webkit-flex: 5; flex: 5; }
+.sys-procs { -webkit-flex: 5; flex: 5; }
+
+.disk-row { padding: 9px 0; border-top: 1px solid rgba(48,65,74,.5); }
+.disk-row:first-child { border-top: none; padding-top: 0; }
+.disk-line1 {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+.disk-mount { color: #EDF4F1; font-weight: 600; }
+.disk-detail { font-size: 11px; color: #97AAA7; text-align: right; }
+.disk-row .meter { margin: 0; }
+
+.sys-history { margin-top: 6px; }
+
+.sys-temps { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin-top: 14px; }
+.sys-temps .chip { margin: 0 8px 0 0; }
+
+/* ============================================================
+   页面四：网络监控 Network
+   ============================================================ */
+.net-adapter { -webkit-flex: 7; flex: 7; }
+.net-latency {
+  -webkit-flex: 5;
+  flex: 5;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.net-latency .num { font-size: 30px; }
+
+.adapter-grid { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin-top: 2px; }
+.adapter-cell {
+  width: 50%;
+  padding: 11px 12px 11px 0;
+  border-top: 1px solid rgba(48,65,74,.5);
+}
+.adapter-cell.full { width: 100%; padding-top: 12px; }
+.adapter-cell:first-child, .adapter-cell.full:first-child { border-top: none; padding-top: 0; }
+.adapter-k {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #97AAA7;
+}
+.adapter-v { font-size: 14px; color: #EDF4F1; margin-top: 3px; word-break: break-all; }
+.adapter-v.big { font-size: 20px; font-weight: 300; }
+.adapter-v .dot { margin-right: 7px; }
+
+.net-latency .net-internet {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(48,65,74,.5);
+  font-size: 12px;
+  color: #97AAA7;
+}
+.net-latency .net-internet .ic { margin-right: 8px; -webkit-flex-shrink: 0; flex-shrink: 0; }
+.net-internet.is-ok { color: #9DE6C8; }
+.net-internet.is-bad { color: #EF8B83; }
+
+.net-chart-card { margin-top: 6px; }
+.net-totals {
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(48,65,74,.5);
+}
+.net-total { -webkit-flex: 1; flex: 1; }
+.net-total .sub { margin-bottom: 2px; }
+.net-total-v { font-size: 16px; font-weight: 300; color: #EDF4F1; }
+
+.net-adapters-card { margin-top: 14px; }
+.adapter-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-top: 1px solid rgba(48,65,74,.4);
+  font-size: 12px;
+  color: #97AAA7;
+}
+.adapter-row:first-child { border-top: none; padding-top: 0; }
+.adapter-row b { color: #EDF4F1; font-weight: 500; text-align: right; margin-left: 16px; word-break: break-all; }
+.adapter-row .dot { margin-right: 7px; }
+
+.net-future { margin: 14px 2px 0; font-size: 11px; color: #5F7377; }
+
+/* ============================================================
+   页面五：设置 Settings
+   ============================================================ */
+.form-card { padding: 4px 16px 12px; }
+.form-row { padding: 13px 0; border-bottom: 1px solid rgba(48,65,74,.45); }
+.form-row:last-child { border-bottom: none; }
+.form-row label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #97AAA7;
+  margin-bottom: 8px;
+}
+.form-row .field { width: 100%; }
+.form-hint { font-size: 11px; color: #5F7377; margin-top: 7px; line-height: 1.5; }
+
+.form-actions { display: -webkit-flex; display: flex; margin: 14px 0 4px; }
+.form-actions .btn + .btn { margin-left: 10px; }
+.form-status { font-size: 12px; margin: 8px 0 6px; min-height: 18px; line-height: 1.5; }
+.form-status.is-ok { color: #9DE6C8; }
+.form-status.is-err { color: #EF8B83; }
+.form-status.is-busy { color: #97AAA7; }
+
+.form-row-inline {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(48,65,74,.45);
+}
+.form-row-inline:last-child { border-bottom: none; }
+.form-row-inline label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #97AAA7;
+}
+.form-row-inline .form-hint { margin-top: 2px; }
+
+.server-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(48,65,74,.45);
+  font-size: 13px;
+  color: #97AAA7;
+}
+.server-row:last-child { border-bottom: none; }
+.server-row b { color: #EDF4F1; font-weight: 500; text-align: right; margin-left: 16px; word-break: break-all; }
+
+.settings-foot { margin: 18px 2px 0; text-align: center; font-size: 11px; color: #5F7377; }
+
+/* ============================================================
+   竖屏：单列堆叠
+   ============================================================ */
+@media (orientation: portrait) {
+  .ov-row, .sys-row, .net-row { -webkit-flex-direction: column; flex-direction: column; }
+  .ov-row > * + *, .sys-row > * + *, .net-row > * + * { margin-left: 0; margin-top: 14px; }
+
+  .ov-card-cpu { min-height: 0; }
+  .ov-card-mem .num, .sys-mem .num { font-size: 24px; }
+
+  .ov-card-host { min-height: 0; }
+  .ov-gpu .gpu-stat { margin-left: 10px; max-width: 40%; }
+
+  .core { width: 50%; }
+
+  .adapter-cell { width: 100%; padding: 11px 0 11px; }
+  .adapter-cell.full { padding-top: 12px; }
+  .adapter-cell:first-child { border-top: none; padding-top: 0; }
+  .adapter-cell:nth-child(2) { border-top: none; }
+  .adapter-cell:nth-child(2) { padding-top: 12px; }
+
+  .form-actions .btn { -webkit-flex: 1; flex: 1; }
+  .form-actions .btn + .btn { margin-left: 10px; }
+  .form-row-inline { -webkit-flex-direction: column; flex-direction: column; -webkit-align-items: flex-start; align-items: flex-start; }
+  .form-row-inline .seg { margin-top: 10px; }
+}
